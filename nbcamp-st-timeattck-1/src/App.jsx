@@ -57,8 +57,8 @@ const App = () => {
         silver: silver,
         bronze: bronze,
       };
-      setCountries([...countries, newCountries]).sort(
-        (a, b) => b.gold - a.gold
+      setCountries(
+        [...countries, newCountries].sort((a, b) => b.gold - a.gold)
       );
     }
     setName("");
@@ -80,6 +80,7 @@ const App = () => {
         .map((item) => {
           if (item.name === name) {
             return {
+              id: new Date().getTime(),
               name: item.name,
               gold: gold,
               silver: silver,
@@ -155,7 +156,9 @@ const App = () => {
               <td>{countries.silver}</td>
               <td>{countries.bronze}</td>
               <td>
-                <button onClick={handleDeleteCountry}>삭제</button>
+                <button onClick={() => handleDeleteCountry(countries.id)}>
+                  삭제
+                </button>
               </td>
             </tr>
           ))}
